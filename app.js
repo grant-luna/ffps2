@@ -4,6 +4,8 @@ const app = express();
 app.set('views', ['./views', './views/components']);
 app.set('view engine', 'pug');
 
+app.use(express.static('public'));
+
 app.get('/', (request, response) => {
   response.render('searches');
 });
