@@ -6,6 +6,9 @@ app.set('view engine', 'pug');
 
 app.use(express.static('public'));
 
+const morgan = require('morgan');
+app.use(morgan('common'));
+
 app.get('/', (request, response) => {
   response.render('searches');
 });
