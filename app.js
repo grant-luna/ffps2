@@ -35,7 +35,8 @@ app.use(session({
   },
   store: new pgSession({
     pool: pgPool,
-    tableName: 'session'
+    tableName: 'session',
+    createTableIfMissing: true,
   }),
   name: 'faster-fast-people-search-session-id',
   secret: 'Session Secret',
