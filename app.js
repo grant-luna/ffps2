@@ -9,6 +9,11 @@ app.use(express.static('public'));
 const morgan = require('morgan');
 app.use(morgan('common'));
 
+const { check, validationResult } = require('express-validator');
+
+app.use(express.json());
+app.use(express.urlencoded());
+
 app.get('/', (request, response) => {
   response.render('searches');
 });
