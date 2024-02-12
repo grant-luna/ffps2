@@ -52,10 +52,28 @@ app.use(session({
 app.use(express.json());
 app.use(express.urlencoded());
 
+// Provide flash messages to each route
+app.use((request, response, next) => {
+  response.locals.flash = request.session.flash;
+  delete request.session.flash;
+  next();
+})
+
 // Route Handlers
 app.get('/', (request, response) => {
   response.render('searches');
 });
+
+app.use((error, request, response, next) => {
+  if (error instanceof Error) {
+    console.log(error.message);
+    response.status(500).send(error.message);
+  } else {
+    console.log('An error occurred in the application');
+    response.status(500).send('An unexpected error occurred');
+  }
+});
+
 
 app.listen(3000, 'localhost', () => {
   console.log('Listening on Port 3000');
