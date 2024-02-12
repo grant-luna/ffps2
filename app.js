@@ -16,6 +16,10 @@ app.use(morgan('common'));
 // Validation Configuration (express-validator)
 const { check, validationResult } = require('express-validator');
 
+// Flash Message Configuration
+const flash = require('express-flash');
+app.use(flash());
+
 // Session Configuration
 const pg = require('pg');
 const session = require('express-session');
