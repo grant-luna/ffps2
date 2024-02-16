@@ -48,6 +48,14 @@ app.use(session({
   saveUninitialized: true,
 }));
 
+// Configure Database Persistence
+const PgPersistence = require('./lib/pg-persistence');
+
+app.use((request, response, next) => {
+  response.locals.store = new PgPersistence();
+  next();
+});
+
 // Request Body Parsing Configuration
 app.use(express.json());
 app.use(express.urlencoded());
@@ -57,7 +65,7 @@ app.use((request, response, next) => {
   response.locals.flash = request.session.flash;
   delete request.session.flash;
   next();
-})
+});
 
 // Route Handlers
 app.get('/', (request, response) => {
