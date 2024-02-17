@@ -48,6 +48,9 @@ app.use(session({
   saveUninitialized: true,
 }));
 
+// Error Handling
+const catchError = require('./lib/catch-error');
+
 // Configure Database Persistence
 const PgPersistence = require('./lib/pg-persistence');
 
