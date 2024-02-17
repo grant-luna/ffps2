@@ -1,3 +1,6 @@
+// General Application Configuration
+const config = require('./lib/config');
+
 // Configure and initialize express instance
 const express = require('express');
 const app = express();
@@ -43,7 +46,7 @@ app.use(session({
     createTableIfMissing: true,
   }),
   name: 'faster-fast-people-search-session-id',
-  secret: 'Session Secret',
+  secret: config.SECRET,
   resave: false,
   saveUninitialized: true,
 }));
@@ -98,7 +101,7 @@ app.use((error, request, response, next) => {
 });
 
 
-app.listen(3000, 'localhost', () => {
+app.listen(config.PORT, config.HOST, () => {
   console.log('Listening on Port 3000');
 });
 
