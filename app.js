@@ -71,9 +71,9 @@ app.use((request, response, next) => {
 });
 
 // Route Handlers
-app.get('/', (request, response) => {
+app.get('/', catchError((request, response, next) => {
   response.render('searches');
-});
+}));
 
 app.use((error, request, response, next) => {
   if (error instanceof Error) {
