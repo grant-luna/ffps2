@@ -74,7 +74,12 @@ app.use((request, response, next) => {
 
 // Authentication Middleware
 const authenticateUser = (request, response, next) => {
-  
+  if (!response.locals.signedIn) {
+    console.log('Unauthorized access');
+    response.status(401).send('Unauthorized Access');
+  } else {
+    next();
+  }
 }
 
 // Route Handlers
