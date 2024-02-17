@@ -65,10 +65,17 @@ app.use(express.urlencoded());
 
 // Provide flash messages to each route
 app.use((request, response, next) => {
+  response.locals.username = request.session.username;
+  response.locals.signedIn = request.session.signedIn;
   response.locals.flash = request.session.flash;
   delete request.session.flash;
   next();
 });
+
+// Authentication Middleware
+const authenticateUser = (request, response, next) => {
+  
+}
 
 // Route Handlers
 app.get('/', catchError((request, response, next) => {
